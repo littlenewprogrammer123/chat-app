@@ -1,0 +1,558 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+/* 🌙 Dark Mode Fixes */
+.dark-mode {
+  background-color: #181818;
+  color: #e4e6eb; /* default text color */
+}
+
+/* Sidebar background */
+.dark-mode .sidebar,
+.dark-mode .navigation,
+.dark-mode .sidebar-left {
+  background-color: #1f1f1f;
+  color: #e4e6eb;
+}
+
+/* Sidebar headings (Discussions, Members etc.) */
+.dark-mode .sidebar h2,
+.dark-mode .sidebar .title,
+.dark-mode .sidebar strong {
+  color: #ffffff; /* bright white */
+}
+
+/* Chat header (bot name + status) */
+.dark-mode .chat .top {
+  background: #1f1f1f;
+  border-bottom: 1px solid #333;
+}
+.dark-mode .chat .top h5 {
+  color: #fff;       /* bot name */
+}
+.dark-mode .chat .top span {
+  color: #aaa;       /* status text */
+}
+
+/* Chat background */
+.dark-mode .chat .content {
+  background: #181818;
+  color: #e4e6eb;
+}
+
+/* Empty chat (before selecting bot) */
+.dark-mode .chat .content.empty {
+  background: #181818;   /* ensure full dark */
+  color: #e4e6eb;
+}
+
+/* Messages */
+.dark-mode .message .text {
+  background: #2a2a2a;   /* gray bubbles for bot */
+  color: #fff;           /* white text */
+}
+.dark-mode .message.me .text {
+  background: #0084ff;   /* keep user bubble blue */
+  color: #fff;
+}
+
+/* Input box */
+.dark-mode .form-control {
+  background: #2a2a2a;
+  color: #fff !important;
+  border: 1px solid #444;
+}
+.dark-mode .form-control::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+.dark-mode h5{
+  color: #fff !important;
+}
+.dark-mode h1{
+  color: #fff !important;
+}
+.dark-mode p{
+  color: #fff !important;
+}
+.dark-mode div.main{
+  background-color: #181818;
+    color: #e4e6eb;
+    height: 100vh;
+}
+.dark-mode div.bottom{
+  border-top: none !important;
+}
+
+.dark-mode .main .chat {
+  border-left: 2px solid #ffffff;  /* darker line in dark mode */
+  background: #181818;
+  height: 100vh;
+}
+
+.light-mode .main .chat {
+  border-left: 2px solid #ddd;  /* lighter line in light mode */
+  background: #fff;
+}
+
+/* 🌙 Dark mode bot bubble */
+.dark-mode .message:not(.me) .text {
+  background: #2a2a2a !important;   /* darker bubble */
+  color: #eaeaea;        /* light text */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* 🌙 Dark mode user bubble */
+.dark-mode .message.me .text {
+  background: #005bb5;   /* deep blue bubble */
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+/* Chat input container */
+.bottom form {
+  display: flex;
+  align-items: center;
+  outline: none !important;
+}
+
+/* Textarea */
+.dark-mode textarea.form-control {
+  flex: 1;
+  background: #2c2c2c;      /* dark mode bg */
+  color: #fff;
+  border: none !important;   /* 🔥 remove border */
+  box-shadow: none !important;
+  resize: none;
+  border-radius: 20px;
+  padding: 10px 14px;
+}
+
+/* Placeholder */
+textarea.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.btn.send{
+  border: none !important;
+}
+/* Send button */
+.dark-mode .btn.send {
+  background: #2c2c2c;       /* same as textarea */
+  border: none !important;   /* 🔥 remove border */
+  border-radius: 20px;
+  box-shadow: none !important;
+  margin-left: -45px;        /* overlap neatly with rounded input */
+  z-index: 2;
+}
+
+.btn.send i {
+  color: #bbb;               /* light gray icon */
+  font-size: 20px;
+}
+
+/* Base (light mode by default) */
+textarea.form-control {
+  flex: 1;
+  background: #fff;              /* white input */
+  color: #000;                   /* black text */
+  border: 1px solid #ddd;        /* subtle border */
+  border-radius: 20px;
+  padding: 10px 14px;
+  resize: none;
+  font-size: 14px;
+}
+
+textarea.form-control::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.btn.send {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.btn.send i {
+  color: #888;                   /* gray icon in light mode */
+  font-size: 20px;
+}
+
+/* 🌙 Dark Mode */
+.dark-mode textarea.form-control {
+  background: #2c2c2c;
+  color: #fff;
+  border: none;                   /* remove white line */
+}
+
+.dark-mode textarea.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.dark-mode .btn.send {
+  background: #2c2c2c;
+  border: none;
+}
+
+.dark-mode .btn.send i {
+  color: #bbb;                    /* light gray icon */
+}
+/* Container for input + button */
+.bottom form {
+  display: flex;
+  align-items: center;
+  background: #fff;       
+  border: 1px solid #ddd;  
+  border-radius: 20px;
+  padding: 0 5px;
+  overflow: hidden;        /* ✅ Prevents white line at edges */
+  color: #111 !important;
+}
+
+/* Textarea */
+.bottom textarea.form-control {
+  flex: 1;
+  border: none !important;      /* ✅ Remove inner border */
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important; /* ✅ No extra white */
+  color: #000;
+  padding: 10px 12px;
+  font-size: 14px;
+  resize: none;
+}
+
+.bottom textarea.form-control::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+/* Send button */
+.bottom .btn.send {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom .btn.send i {
+  color: #888;
+  font-size: 20px;
+}
+
+/* 🌙 Dark mode */
+.dark-mode .bottom form {
+  background: #2c2c2c;
+  border: none;
+}
+
+.dark-mode .bottom textarea.form-control {
+  color: #fff;
+}
+
+.dark-mode .bottom textarea.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.dark-mode .bottom .btn.send i {
+  color: #bbb;
+}
+
+
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+}
+
+.profile h4 {
+  margin: 10px 0 5px;
+  color: #333;
+}
+
+.dark-mode .profile h4 {
+  color: #fff;
+}
+
+
+.btn.logout i {
+  /* color: #888; default gray */
+  font-size: 22px;
+  transition: color 0.3s ease;
+  margin-top: -40px;
+}
+
+.btn.logout:hover i {
+  color: #0084ff; /* 🔵 blue on hover */
+}
+
+/* === Desktop view (≥992px) === */
+@media (min-width: 992px) {
+  .layout {
+    display: flex; 
+     height: 100vh;
+  }
+
+  .sidebar {
+    width: 320px;
+    border-right: 1px solid #ddd;
+    display: block;
+  }
+
+  .main {
+    flex: 1;
+    display: block;
+  }
+
+  .back-btn {
+    display: none; /* hide back button on desktop */
+  }
+}
+
+/* === Mobile & Tablet (<992px) === */
+@media (max-width: 991px) {
+  .layout {
+    display: flex; 
+    flex-direction: column; 
+    height: 100vh;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex: 1;
+    display: block;
+  }
+
+  .sidebar.hide {
+    display: none; /* hide contacts when chat is open */
+  }
+
+  .main {
+    display: none; /* chat hidden by default */
+    flex: 1;
+  }
+
+  .main.show-chat {
+    display: block; /* show chat when a contact is clicked */
+    width: 100%;
+  }
+
+  .back-btn {
+    background: none;
+    border: none;
+    color: #0084ff;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+  }
+}
+
+/* === Desktop (≥992px) === */
+@media (min-width: 992px) {
+  .layout {
+    display: flex; 
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .sidebar {
+    width: 320px;
+    border-right: 1px solid #ddd;
+    display: block;
+    background: #fff;
+  }
+
+  .dark-mode .sidebar {
+    background: #181818;
+    border-right: 1px solid #333;
+  }
+
+  .main {
+    flex: 1;
+    display: block;
+    overflow: hidden;
+  }
+
+  .navigation .menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    height: 100%;
+    padding: 20px 0;
+  }
+}
+
+/* === Mobile & Tablet (<992px) === */
+@media (max-width: 991px) {
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden; /* ✅ stop body scroll */
+  }
+
+  .layout {
+    display: flex; 
+    flex-direction: column;
+    height: 100dvh; 
+    overflow: hidden;
+  }
+
+  /* Sidebar (contacts) */
+  .sidebar {
+    flex: 1;
+    height: auto;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: #fff;
+  }
+
+  .dark-mode .sidebar {
+    background: #181818;
+  }
+
+  .discussions .list-group {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    padding-bottom: 70px; /* ✅ avoid overlap with nav */
+  }
+
+  /* Chat section */
+  .main.show-chat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .dark-mode .main.show-chat {
+    background: #181818;
+  }
+
+  .chat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0; /* ✅ prevents stretching */
+  }
+
+  .chat .top {
+    flex: 0 0 auto;
+  }
+
+  .chat .content {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    min-height: 0;
+    overscroll-behavior: contain; /* ✅ stop white bounce */
+  }
+
+  .chat .bottom {
+    flex: 0 0 auto;
+    background: inherit;
+    border-top: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  .dark-mode .chat .bottom {
+    border-top: 1px solid #333;
+    background: #181818;
+  }
+
+  /* Bottom nav */
+  .navigation {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 70px; /* ✅ slightly smaller */
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    z-index: 1000;
+  }
+
+  .dark-mode .navigation {
+    background: #1f1f1f;
+    border-top: 1px solid #333;
+  }
+
+  .navigation .menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    padding: 0 10px;
+  }
+
+  .navigation .menu i {
+    font-size: 26px;
+  }
+
+  .navigation .menu .btn,
+  .navigation .menu a {
+    flex: 1;
+    text-align: center;
+    margin: 0 !important;
+    padding: 10px 0;
+  }
+
+  /* Hide avatar in bottom nav */
+  .navigation .menu .avatar-xl {
+    display: none;
+  }
+
+  /* Floating profile avatar */
+  .profile-btn-mobile {
+    position: fixed;
+    bottom:10px; /* ✅ sits above nav */
+    left: 15px;
+    z-index: 1100;
+  }
+
+  .profile-btn-mobile img {
+    width: 45px;
+    height: 45px;
+    /* border-radius: 50%; */
+  }
+  
+  .sidebar {
+    flex: 1;
+    height: calc(100vh - 70px); /* take up all space above bottom nav */
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: #fff;
+  }
+
+  .dark-mode .sidebar {
+    background: #181818;
+  }
+
+  .discussions .list-group {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    padding-bottom: 70px; /* keep last contact visible above nav */
+  }
+}
+
+
+
+
